@@ -1,14 +1,17 @@
 import 'dart:io';
 
-import 'package:advent_of_code/day1.dart';
-import 'package:advent_of_code/day2.dart';
+import '../lib/day1.dart';
+import '../lib/day2.dart';
 
 void main(List<String> arguments) {
-  File('resources/day2_2.txt').readAsLines().then((List<String> contents) {
+  var fileName = 'day2_2';
+  Function(List<String> contents) dayFunction = day2_2;
+
+  File('resources/${fileName}.txt').readAsLines().then((List<String> contents) {
     print('File Contents\n---------------');
     print(contents);
 
-    String result = day2_2(contents);
+    String result = dayFunction.call(contents);
 
     print(result);
   });
