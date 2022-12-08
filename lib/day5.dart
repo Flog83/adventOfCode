@@ -94,6 +94,7 @@ String day5_2(List<String> contents) {
           crateStacks[i].addFirst(crateLine[i].substring(1, 2));
         }
       }
+      print('$replace');
     } else if (replace.startsWith('move.')) {
       var moveParameters = <int>[];
       replace.split('.').forEach((element) {
