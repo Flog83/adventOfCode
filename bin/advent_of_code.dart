@@ -7,12 +7,13 @@ import '../lib/day4.dart';
 import '../lib/day5.dart';
 import '../lib/day6.dart';
 import '../lib/day7.dart';
+import '../lib/day8.dart';
 
 void main(List<String> arguments) {
-  var fileName = 'day7';
-  Function(List<String> contents) dayFunction = day7_2;
+  var fileName = 'day8';
+  Function(List<String> contents) dayFunction = day8_2;
 
-  File('resources/${fileName}.txt').readAsLines().then((List<String> contents) {
+  File('resources/$fileName.txt').readAsLines().then((List<String> contents) {
     //print('File Contents\n---------------');
     //print(contents);
 
