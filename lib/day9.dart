@@ -1,7 +1,7 @@
 class Coordinate {
   int x;
   int y;
-  List<Coordinate> save = <Coordinate>[];
+  Set<Coordinate> save = {};
 
   Coordinate(this.x, this.y);
 
@@ -24,11 +24,22 @@ class Coordinate {
     y++;
     save.add(Coordinate(x, y));
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Coordinate &&
+          runtimeType == other.runtimeType &&
+          x == other.x &&
+          y == other.y;
+
+  @override
+  int get hashCode => x.hashCode + y.hashCode;
 }
 
 String day9_1(List<String> contents) {
-  int startX = 0;
-  int startY = 5;
+  int startX = 200;
+  int startY = 200;
 
   Coordinate startPosition = Coordinate(startX, startY);
   Coordinate headPosition = Coordinate(startX, startY);
@@ -54,13 +65,14 @@ String day9_1(List<String> contents) {
           headPosition.moveDown();
           break;
       }
+
       evaluateTail(headPosition, tailPosition);
-      displayPosition(headPosition, tailPosition, 6);
+      //displayPosition(headPosition, tailPosition, 6);
       print('\t--------------\t\t');
     }
   }
 
-  return '';
+  return '${tailPosition.save.length}';
 }
 
 void displayPosition(Coordinate head, Coordinate tail, int size) {
@@ -80,16 +92,11 @@ void displayPosition(Coordinate head, Coordinate tail, int size) {
 }
 
 void evaluateTail(Coordinate headPosition, Coordinate tailPosition) {
-  if (headPosition.x - tailPosition.x >= 2) {
-    tailPosition.moveRight();
-  } else if (tailPosition.x - headPosition.x >= 2) {
-    tailPosition.moveLeft();
-  } else if (headPosition.y - tailPosition.y >= 2) {
-    tailPosition.moveDown();
-  } else if (tailPosition.y - headPosition.y >= 2) {
-    tailPosition.moveUp();
-  } else if (headPosition.x != tailPosition.x &&
-      headPosition.y != tailPosition.y) {
+  print('Head : x : ${headPosition.x} / y : ${headPosition.y}');
+  print('Tail : x : ${tailPosition.x} / y : ${tailPosition.y}');
+  //displayPosition(headPosition, tailPosition, 200);
+  //print('\t----reevaluate------\t\t');
+  if (headPosition.x != tailPosition.x && headPosition.y != tailPosition.y) {
     if (headPosition.x - tailPosition.x >= 2) {
       tailPosition.moveRight();
       if (headPosition.y > tailPosition.y) {
@@ -118,6 +125,16 @@ void evaluateTail(Coordinate headPosition, Coordinate tailPosition) {
       } else {
         tailPosition.moveLeft();
       }
+    }
+  } else {
+    if (headPosition.x - tailPosition.x >= 2) {
+      tailPosition.moveRight();
+    } else if (tailPosition.x - headPosition.x >= 2) {
+      tailPosition.moveLeft();
+    } else if (headPosition.y - tailPosition.y >= 2) {
+      tailPosition.moveDown();
+    } else if (tailPosition.y - headPosition.y >= 2) {
+      tailPosition.moveUp();
     }
   }
 }
