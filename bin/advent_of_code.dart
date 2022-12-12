@@ -12,7 +12,7 @@ import '../lib/day9.dart';
 
 void main(List<String> arguments) {
   var fileName = 'day9';
-  Function(List<String> contents) dayFunction = day9_1;
+  Function(List<String> contents) dayFunction = day9_2;
 
   File('resources/$fileName.txt').readAsLines().then((List<String> contents) {
     //print('File Contents\n---------------');
