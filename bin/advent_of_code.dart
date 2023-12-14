@@ -1,11 +1,11 @@
 import 'dart:io';
 
-import '../lib/2023/day2.dart';
+import '../lib/2023/day3.dart';
 
 
 void main(List<String> arguments) {
-  var fileName = 'day2';
-  Function(List<String> contents) dayFunction = day2_2;
+  var fileName = 'day3';
+  Function(List<String> contents) dayFunction = day3_2;
 
   File('lib/2023/resources/$fileName.txt').readAsLines().then((List<String> contents) {
     //print('File Contents\n---------------');
